@@ -145,4 +145,6 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
             assert(ctx.translation).equals(400);
         }
     });
+
+    // TODO: set color, set width, set image, recursion (spiral)
 });

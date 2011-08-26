@@ -3,7 +3,7 @@ define(['utils'], function(utils) {
 
     var context = function(canvas) {
         if(!canvas) {
-            return;
+            return null;
         }
 
         var ctx = canvas.getContext("2d");
