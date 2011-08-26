@@ -1,12 +1,12 @@
 define(['utils'], function(utils) {
     // reference http://el.media.mit.edu/logo-foundation/logo/turtle.html
 
-    var context = function(elem) {
-        //var canvas = $(elem)[0];
-        //var ctx = canvas.getContext("2d");
-        // XXX
-        var canvas = null;
-        var ctx = null;
+    var context = function(canvas) {
+        if(!canvas) {
+            return;
+        }
+
+        var ctx = canvas.getContext("2d");
 
         return {
             center: function() {
@@ -192,39 +192,6 @@ define(['utils'], function(utils) {
         return commands;
     };
     
-    // API demo
-    if(false) {
-        var world = context('#world');
-        var joe = turtle(world); // sits at origin facing north pen down
-
-        joe.record('box');
-        joe.repeat(4, 'forward', '<radius>', 'rotate', 90);
-        joe.stop();
-
-        joe.record('flower');
-        joe.repeat('<parts>', 'box', null, 'rotate', '<rotation>');
-        joe.stop();
-
-        // TODO
-        if(false) {
-            joe.record('spiral');
-            joe.stopIf('<size> > 100');
-            joe.forward('<size>');
-            joe.rotate('<angle>');
-            joe.spiral({
-                size: '<size> + 2', 
-                angle: '<angle>'
-            }); // figure out how to deal with recursion step while recording
-            joe.stop();
-        }
-
-        joe.flower({
-            parts: 36, 
-            rotation: 10, 
-            radius: 90
-        });
-    }
-
     return {
         context: context,
         turtle: turtle
