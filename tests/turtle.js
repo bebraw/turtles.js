@@ -62,13 +62,15 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
         }
     });
 
-    suite('Turtle move', {
-        setUp: function() {
-            var ctx = context();
-            var joe = turtle(ctx);
+    var setUpTurtle = function() {
+        var ctx = context();
+        var joe = turtle(ctx);
 
-            return [ctx, joe];
-        },
+        return [ctx, joe];       
+    };
+
+    suite('Turtle move', {
+        setUp: setUpTurtle,
         forward: function(ctx, joe) {
             joe.forward(100);
 
@@ -82,7 +84,7 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
     });
 
     suite('Turtle rotate', {
-        //_: initTurtle(),
+        setUp: setUpTurtle,
         left: function() {
             //this.joe.rotate(-90);
         },
