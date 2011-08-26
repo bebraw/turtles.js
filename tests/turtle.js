@@ -63,18 +63,18 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
     });
 
     suite('Turtle move', {
-        forward: function() {
+        setUp: function() {
             var ctx = context();
             var joe = turtle(ctx);
-            
+
+            return [ctx, joe];
+        },
+        forward: function(ctx, joe) {
             joe.forward(100);
 
             assert(ctx.translation).equals(100);
         },
-        backward: function() {
-            var ctx = context();
-            var joe = turtle(ctx);
-
+        backward: function(ctx, joe) {
             joe.backward(100);
 
             assert(ctx.translation).equals(-100);
@@ -104,5 +104,4 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
     });
 
     // TODO: test the API commands and recording
-    // TODO: implement proper setUp
 });
