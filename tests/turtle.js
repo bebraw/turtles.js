@@ -12,6 +12,8 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
                 this.translation = y;
             },
             rotate: function(degrees) {
+                this.rotation = degrees;
+
                 if(degrees == 180) {
                     this.pointsNorth = true;
                 }
@@ -20,7 +22,8 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
             clear: function() {},
             atCenter: false,
             pointsNorth: false,
-            translation: 0
+            translation: 0,
+            rotation: 0
         };
     };
 
@@ -85,11 +88,15 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
 
     suite('Turtle rotate', {
         setUp: setUpTurtle,
-        left: function() {
-            //this.joe.rotate(-90);
+        left: function(ctx, joe) {
+            joe.rotate(-90);
+
+            assert(ctx.rotation).equals(-90);
         },
-        right: function() {
-            //this.joe.rotate(90);
+        right: function(ctx, joe) {
+            joe.rotate(90);
+
+            assert(ctx.rotation).equals(90);
         }
     });
 
