@@ -46,7 +46,7 @@ define(['utils'], function(utils) {
         }
 
         // make sure ctx contains all appropriate methods
-        var containsMethods = utils.equals(utils.keys(ctx), utils.keys(context()));
+        var containsMethods = utils.contains(utils.keys(ctx), utils.keys(context()));
 
         if(!containsMethods) {
             return null;
@@ -68,6 +68,13 @@ define(['utils'], function(utils) {
                 }
 
                 ctx.translate(0, distance);
+            },
+            backward: function(distance) {
+                if(penDown) {
+                    ctx.line(distance);
+                }
+
+                ctx.translate(0, -distance);
             },
             rotate: function(degrees) {
                 ctx.rotate(degrees);
@@ -154,6 +161,9 @@ define(['utils'], function(utils) {
                 currentRecording = [];
 
                 penDown = penWasDown;
+            },
+            penState: function() {
+                return penDown? 'down': 'up';
             }
         };
 
