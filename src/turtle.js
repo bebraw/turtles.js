@@ -218,9 +218,6 @@ define(['utils'], function(utils) {
             joe.stop();
         }
 
-        // TODO: eliminate this. recording should not mess up ctx
-        joe.reset();
-
         joe.flower({
             parts: 36, 
             rotation: 10, 

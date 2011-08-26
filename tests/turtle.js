@@ -27,7 +27,22 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
         };
     };
 
+    var setUpTurtle = function() {
+        var ctx = context();
+        var joe = turtle(ctx);
+
+        return [ctx, joe];       
+    };
+
+    var initialState = function(ctx, joe) {
+        // turtle should be at center, pen down, facing north initially
+        assert(ctx.atCenter).equals(true);
+        assert(ctx.pointsNorth).equals(true);
+        assert(joe.penState()).equals('down');        
+    };
+
     suite('Turtle initializers', {
+        setUp: setUpTurtle,
         empty: function() {
             // XXX: might want to raise an exception instead
             assert(turtle()).equals(null);
@@ -39,14 +54,7 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
             // XXX: might want to raise an exception instead
             assert(turtle({})).equals(null);
         },
-        atCenter: function() {
-            var ctx = context();
-            var joe = turtle(ctx);
-
-            assert(ctx.atCenter).equals(true);
-            assert(ctx.pointsNorth).equals(true);
-            assert(joe.penState()).equals('down');
-        }
+        initialState: initialState
     });
 
     suite('Turtle pen', {
@@ -64,13 +72,6 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
             assert(this.joe.penState()).equals('up');
         }
     });
-
-    var setUpTurtle = function() {
-        var ctx = context();
-        var joe = turtle(ctx);
-
-        return [ctx, joe];       
-    };
 
     suite('Turtle move', {
         setUp: setUpTurtle,
@@ -116,7 +117,16 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
     });
 
     suite('Turtle reset', {
-        
+        setUp: setUpTurtle,
+        simple: function(ctx, joe) {
+            joe.forward(100);
+            joe.rotate(-45);
+            joe.forward(50);
+
+            joe.reset();
+
+            initialState(ctx, joe);
+        }
     });
 
     suite('Turtle repeat', {
