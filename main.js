@@ -1,7 +1,8 @@
 require(
     {
         paths: {
-            bunit: 'lib/bunit'
+            bunit: 'lib/bunit',
+            utils: 'lib/utils'
         }
     },
     ['bunit', 'tests/tests'],
