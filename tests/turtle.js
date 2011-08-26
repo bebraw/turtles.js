@@ -101,7 +101,18 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
     });
 
     suite('Turtle recording', {
-        
+        setUp: setUpTurtle,
+        recordLeft: function(ctx, joe) {
+            joe.record('left');
+            joe.rotate(-90);
+            joe.stop();
+
+            // should not affect rotation since we're recording
+            assert(ctx.rotation).equals(180);
+
+            joe.left();
+            assert(ctx.rotation).equals(-90);
+        }
     });
 
     suite('Turtle reset', {

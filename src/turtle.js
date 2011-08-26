@@ -149,8 +149,8 @@ define(['utils'], function(utils) {
                             return args;
                         };
 
-                        utils.each(function(i, part) {
-                            var args = constructArgs(part.args);
+                        utils.each(function(part, i) {
+                            var args = constructArgs(part.args) || [];
 
                             commands[part.name].apply({}, args);
                         }, recording);
@@ -169,13 +169,14 @@ define(['utils'], function(utils) {
 
         var wrapCommand = function(name, command) {    
             return function() {
-                command.apply({}, arguments);
-
                 if(isRecording && !repeating) {
                     currentRecording.push({
                         name: name,
                         args: arguments
                     });
+                }
+                else {
+                    command.apply({}, arguments);
                 }
             };
         };
