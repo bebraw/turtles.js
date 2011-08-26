@@ -18,12 +18,16 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
                     this.pointsNorth = true;
                 }
             },
+            color: function(col) {
+                this.col = col;
+            },
             line: function() {},
             clear: function() {},
             atCenter: false,
             pointsNorth: false,
             translation: 0,
-            rotation: 0
+            rotation: 0,
+            col: null
         };
     };
 
@@ -35,10 +39,11 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
     };
 
     var initialState = function(ctx, joe) {
-        // turtle should be at center, pen down, facing north initially
         assert(ctx.atCenter).equals(true);
         assert(ctx.pointsNorth).equals(true);
-        assert(joe.penState()).equals('down');        
+        assert(ctx.col.toArray()).equals([0, 0, 0, 1]);
+        assert(joe.penState()).equals('down');     
+        assert(joe.color().toArray()).equals([0, 0, 0, 1]);
     };
 
     suite('Turtle initializers', {
@@ -150,5 +155,15 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
         }
     });
 
-    // TODO: set color, set width, set image, recursion (spiral)
+    suite('Turtle color', {
+        setUp: setUpTurtle,
+        simple: function(ctx, joe) {
+            joe.color('red');
+
+            assert(joe.color().toArray()).equals([1, 0, 0, 1]);
+            assert(ctx.col.toArray()).equals([1, 0, 0, 1]);
+        }
+    });
+
+    // TODO: set width, set image, fill (toggle)
 });

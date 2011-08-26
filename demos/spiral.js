@@ -22,6 +22,7 @@ define(['turtle', 'demoUtils', 'utils'], function(turtle, demoUtils, utils) {
             joe.stop();
 
             utils.each(function(k) {
+                joe.color({r: Math.random(), g: Math.random(), b: Math.random()});
                 joe.prong({
                     len: k
                 });

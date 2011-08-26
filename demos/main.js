@@ -3,7 +3,8 @@ require(
         paths: {
             turtle: '../src/turtle',
             demoUtils: './demoUtils',
-            utils: '../lib/utils'
+            utils: '../lib/utils',
+            color: '../lib/color'
         }
     },
     ['utils', 'demos'],

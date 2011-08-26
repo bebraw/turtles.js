@@ -1,5 +1,6 @@
-define(['utils'], function(utils) {
+define(['utils', 'color'], function(utils, color) {
     // reference http://el.media.mit.edu/logo-foundation/logo/turtle.html
+    var rgba = color.rgba;
 
     var context = function(canvas) {
         if(!canvas) {
@@ -36,6 +37,9 @@ define(['utils'], function(utils) {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
 
                 ctx.restore();
+            },
+            color: function(col) {
+                ctx.strokeStyle = col.toCSS();
             }
         };
     };
@@ -58,8 +62,11 @@ define(['utils'], function(utils) {
         var currentRecording = [];
         var recordingName = '';
         var penWasDown = false;
+        var col = rgba();
 
         var repeating = false;
+
+        ctx.color(col);
 
         var commands = {
             forward: function(distance) {
@@ -166,6 +173,16 @@ define(['utils'], function(utils) {
             },
             penState: function() {
                 return penDown? 'down': 'up';
+            },
+            color: function(newCol) {
+                if(newCol) {
+                    col = rgba(newCol);
+
+                    ctx.color(col);
+                }
+                else {
+                    return col;
+                }
             }
         };
 
