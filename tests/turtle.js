@@ -9,7 +9,7 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
                 this.atCenter = true;
             },
             translate: function(x, y) {
-                this.translation = y;
+                this.translation += y;
             },
             rotate: function(degrees) {
                 this.rotation = degrees;
@@ -130,8 +130,19 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
     });
 
     suite('Turtle repeat', {
-        
-    });
+        setUp: setUpTurtle,
+        simple: function(ctx, joe) {
+            joe.repeat(4, 'forward', 100);
 
-    // TODO: test the API commands and recording
+            assert(ctx.translation).equals(400);
+        },
+        template: function(ctx, joe) {
+            joe.record('longForward');
+            joe.repeat(4, 'forward', '<distance>');
+            joe.stop();
+
+            joe.longForward({distance: 100});
+            assert(ctx.translation).equals(400);
+        }
+    });
 });
