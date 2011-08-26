@@ -1,5 +1,6 @@
-define(['./flower'], function(flower) {
+define(['./flower', './spiral'], function(flower, spiral) {
     return {
-        flower: flower
+        flower: flower,
+        spiral: spiral
     };
 });

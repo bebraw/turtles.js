@@ -1,23 +1,32 @@
-define(['turtle'], function(turtle) {
+define(['turtle', 'demoUtils', 'utils'], function(turtle, demoUtils, utils) {
     return {
         run: function() {
-            return;
-            
-            var ctx = turtle.context(); // TODO: pass elem
-            var joe = turtle.turtle();
+            // based on http://www.leeds.ac.uk/jcom/turtle/turtlepascal.htm
+            var canvas = demoUtils.createCanvas();
+            var ctx = turtle.context(canvas);
+            var joe = turtle.turtle(ctx);
 
-            // TODO
-            joe.record('spiral');
-            joe.stopIf('<size> > 100');
-            joe.forward('<size>');
-            joe.rotate('<angle>');
-            joe.spiral({
-                size: '<size> + 2', 
-                angle: '<angle>'
-            }); // figure out how to deal with recursion step while recording
+            joe.record('blot');
+            joe.repeat(4, 'forward', '<radius>', 'rotate', 90);
             joe.stop();
 
-            // TODO: render a few spirals
+            joe.record('prong');
+            joe.penUp();
+            joe.forward('<len>');
+            joe.penDown();
+            
+            joe.blot({radius: 10});
+            
+            joe.penUp();
+            joe.backward('<len>');
+            joe.stop();
+
+            utils.each(function(k) {
+                joe.prong({
+                    len: k
+                });
+                joe.rotate(61);
+            }, utils.reverse(utils.range(360)));
         }
     }
 });

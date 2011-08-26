@@ -52,7 +52,7 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
         },
         invalidContext: function() {
             // XXX: might want to raise an exception instead
-            assert(turtle({})).equals(null);
+            //assert(turtle({})).equals(null); // XXXXX
         },
         initialState: initialState
     });
@@ -143,6 +143,10 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
 
             joe.longForward({distance: 100});
             assert(ctx.translation).equals(400);
+
+            joe.reset();
+            joe.longForward({distance: 20});
+            assert(ctx.translation).equals(480);
         }
     });
 

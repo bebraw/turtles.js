@@ -2,6 +2,7 @@ require(
     {
         paths: {
             turtle: '../src/turtle',
+            demoUtils: './demoUtils',
             utils: '../lib/utils'
         }
     },

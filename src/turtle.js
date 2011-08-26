@@ -130,23 +130,25 @@ define(['utils'], function(utils) {
                             fillArgs = arguments[0];
                         }
 
-                        var constructArgs = function(args) {            
+                        var constructArgs = function(args) {
+                            var ret = utils.clone(utils.argumentsToArray(args));
+                            
                             if(fillArgs) {
                                 for(var i = 0; i < args.length; i++) {
                                     var arg = args[i];
 
                                     if(!arg) {
-                                        args[i] = fillArgs;
+                                        ret[i] = fillArgs;
                                     }
                                     else if(typeof(arg) == 'string' && arg.match('^<[a-zA-Z]*>$')) {
                                         var argName = arg.substring(1, arg.length - 1);
 
-                                        args[i] = fillArgs[argName];
+                                        ret[i] = fillArgs[argName];
                                     }
                                 }
                             }
 
-                            return args;
+                            return ret;
                         };
 
                         utils.each(function(part, i) {

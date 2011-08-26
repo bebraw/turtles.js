@@ -1,14 +1,7 @@
-define(['turtle'], function(turtle) {
+define(['turtle', 'demoUtils'], function(turtle, demoUtils) {
     return {
         run: function() {
-            var canvas = document.createElement('canvas');
-            canvas.width = 800;
-            canvas.height = 600;
-
-            document.body.appendChild(canvas);
-
-            console.log(document, canvas);
-
+            var canvas = demoUtils.createCanvas();
             var ctx = turtle.context(canvas);
             var joe = turtle.turtle(ctx);
 
