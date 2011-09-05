@@ -1,48 +1,6 @@
-define(['utils', 'color'], function(utils, color) {
+define(['utils', 'color', './context'], function(utils, color, context) {
     // reference http://el.media.mit.edu/logo-foundation/logo/turtle.html
     var rgba = color.rgba;
-
-    var context = function(canvas) {
-        if(!canvas) {
-            return null;
-        }
-
-        var ctx = canvas.getContext("2d");
-
-        return {
-            center: function() {
-                ctx.setTransform(1, 0, 0, 1, 0, 0);
-
-                ctx.translate(canvas.width / 2, canvas.height / 2);
-            },
-            translate: function(x, y) {
-                ctx.translate(x, y);
-            },
-            rotate: function(degrees) {
-                ctx.rotate(degrees / 360 * 2 * Math.PI);
-            },
-            line: function(distance) {
-                ctx.beginPath();
-
-                ctx.moveTo(0, 0);
-                ctx.lineTo(0, distance);
-
-                ctx.stroke();
-            },
-            clear: function() {
-                ctx.save();
-
-                ctx.setTransform(1, 0, 0, 1, 0, 0);
-
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-                ctx.restore();
-            },
-            color: function(col) {
-                ctx.strokeStyle = col.toCSS();
-            }
-        };
-    };
 
     var turtle = function(ctx) {
         if(!ctx) {
@@ -50,7 +8,7 @@ define(['utils', 'color'], function(utils, color) {
         }
 
         // make sure ctx contains all appropriate methods
-        var containsMethods = utils.contains(utils.keys(ctx), utils.keys(context()));
+        var containsMethods = utils.contains(utils.keys(ctx), utils.keys(context.normal()));
 
         if(!containsMethods) {
             return null;
@@ -210,9 +168,6 @@ define(['utils', 'color'], function(utils, color) {
 
         return commands;
     };
-    
-    return {
-        context: context,
-        turtle: turtle
-    };
+
+    return turtle;
 });

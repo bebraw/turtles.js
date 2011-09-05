@@ -1,9 +1,9 @@
-define(['turtle', 'demoUtils'], function(turtle, demoUtils) {
+define(['turtle', 'context', 'demoUtils'], function(turtle, context, demoUtils) {
     return {
         run: function() {
             var canvas = demoUtils.createCanvas();
-            var ctx = turtle.context(canvas);
-            var joe = turtle.turtle(ctx);
+            var ctx = context.normal(canvas);
+            var joe = turtle(ctx);
 
             joe.record('box');
             joe.repeat(4, 'forward', '<radius>', 'rotate', 90);

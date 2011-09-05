@@ -1,10 +1,10 @@
-define(['turtle', 'demoUtils', 'utils'], function(turtle, demoUtils, utils) {
+define(['turtle', 'context', 'demoUtils', 'utils'], function(turtle, context, demoUtils, utils) {
     return {
         run: function() {
             // based on http://www.leeds.ac.uk/jcom/turtle/turtlepascal.htm
             var canvas = demoUtils.createCanvas();
-            var ctx = turtle.context(canvas);
-            var joe = turtle.turtle(ctx);
+            var ctx = context.normal(canvas);
+            var joe = turtle(ctx);
 
             joe.record('blot');
             joe.repeat(4, 'forward', '<radius>', 'rotate', 90);

@@ -1,6 +1,4 @@
 define(['bunit', '../src/turtle', 'assert'], function(bunit, turtle, assert) {
-    var turtle = turtle.turtle;
-
     var context = function() {
         return {
             center: function() {
