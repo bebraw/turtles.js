@@ -3,7 +3,8 @@ require(
         paths: {
             bunit: 'lib/bunit',
             utils: 'lib/utils',
-            color: 'lib/color'
+            color: 'lib/color',
+            assert: 'lib/assert'
         }
     },
     ['bunit', 'tests/tests'],

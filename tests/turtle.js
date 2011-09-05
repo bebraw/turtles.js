@@ -1,5 +1,4 @@
-define(['bunit', '../src/turtle'], function(bunit, turtle) {
-    var assert = bunit.assert;
+define(['bunit', '../src/turtle', 'assert'], function(bunit, turtle, assert) {
     var turtle = turtle.turtle;
 
     var context = function() {
