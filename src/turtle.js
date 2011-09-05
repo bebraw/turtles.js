@@ -25,6 +25,8 @@ define(['utils', 'color', './context'], function(utils, color, context) {
         var repeating = false;
 
         ctx.color(col);
+        ctx.lineWidth(1);
+        var width = 1;
 
         var commands = {
             forward: function(distance) {
@@ -132,14 +134,24 @@ define(['utils', 'color', './context'], function(utils, color, context) {
             penState: function() {
                 return penDown? 'down': 'up';
             },
-            color: function(newCol) {
-                if(newCol) {
-                    col = rgba(newCol);
+            color: function(c) {
+                if(c) {
+                    col = rgba(c);
 
                     ctx.color(col);
                 }
                 else {
                     return col;
+                }
+            },
+            lineWidth: function(w) {
+                if(w) {
+                    width = w;
+
+                    ctx.lineWidth(w);
+                }
+                else {
+                    return width;
                 }
             }
         };

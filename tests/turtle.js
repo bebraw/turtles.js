@@ -17,13 +17,17 @@ define(['bunit', '../src/turtle', 'assert'], function(bunit, turtle, assert) {
             color: function(col) {
                 this.col = col;
             },
+            lineWidth: function(w) {
+                this.w = w;
+            },
             line: function() {},
             clear: function() {},
             atCenter: false,
             pointsNorth: false,
             translation: 0,
             rotation: 0,
-            col: null
+            col: null,
+            w: 0
         };
     };
 
@@ -38,8 +42,11 @@ define(['bunit', '../src/turtle', 'assert'], function(bunit, turtle, assert) {
         assert(ctx.atCenter).equals(true);
         assert(ctx.pointsNorth).equals(true);
         assert(ctx.col.toArray()).equals([0, 0, 0, 1]);
+        assert(ctx.w).equals(1);
+
         assert(joe.penState()).equals('down');     
         assert(joe.color().toArray()).equals([0, 0, 0, 1]);
+        assert(joe.lineWidth()).equals(1);
     };
 
     bunit('Turtle initializers', {
@@ -161,5 +168,15 @@ define(['bunit', '../src/turtle', 'assert'], function(bunit, turtle, assert) {
         }
     });
 
-    // TODO: set width, set image, fill (toggle)
+    bunit('Turtle line width', {
+        setUp: setUpTurtle,
+        simple: function(ctx, joe) {
+            joe.lineWidth(10);
+
+            assert(joe.lineWidth()).equals(10);
+            assert(ctx.w).equals(10);
+        }
+    })
+
+    // TODO: set image, fill (toggle)
 });

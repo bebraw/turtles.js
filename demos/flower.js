@@ -5,6 +5,8 @@ define(['turtle', 'context', 'demoUtils'], function(turtle, context, demoUtils) 
             var ctx = context.normal(canvas);
             var joe = turtle(ctx);
 
+            joe.lineWidth(2);
+
             joe.record('box');
             joe.repeat(4, 'forward', '<radius>', 'rotate', 90);
             joe.stop();

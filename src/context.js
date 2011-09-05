@@ -38,6 +38,9 @@ define(function() {
             },
             color: function(col) {
                 ctx.strokeStyle = col.toCSS();
+            },
+            lineWidth: function(w) {
+                ctx.lineWidth = w;
             }
         };
     };
