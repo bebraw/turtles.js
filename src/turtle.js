@@ -143,6 +143,8 @@ define(['utils', 'color', './context'], function(utils, color, context) {
                 else {
                     return col;
                 }
+
+                return null;
             },
             lineWidth: function(w) {
                 if(w) {
@@ -153,6 +155,8 @@ define(['utils', 'color', './context'], function(utils, color, context) {
                 else {
                     return width;
                 }
+
+                return null;
             }
         };
 
