@@ -1,5 +1,4 @@
 define(['bunit', '../src/turtle'], function(bunit, turtle) {
-    var suite = bunit.suite;
     var assert = bunit.assert;
     var turtle = turtle.turtle;
 
@@ -46,7 +45,7 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
         assert(joe.color().toArray()).equals([0, 0, 0, 1]);
     };
 
-    suite('Turtle initializers', {
+    bunit('Turtle initializers', {
         setUp: setUpTurtle,
         empty: function() {
             // XXX: might want to raise an exception instead
@@ -62,7 +61,7 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
         initialState: initialState
     });
 
-    suite('Turtle pen', {
+    bunit('Turtle pen', {
         _: {
             joe: turtle(context())
         },
@@ -78,7 +77,7 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
         }
     });
 
-    suite('Turtle move', {
+    bunit('Turtle move', {
         setUp: setUpTurtle,
         forward: function(ctx, joe) {
             joe.forward(100);
@@ -92,7 +91,7 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
         }
     });
 
-    suite('Turtle rotate', {
+    bunit('Turtle rotate', {
         setUp: setUpTurtle,
         left: function(ctx, joe) {
             joe.rotate(-90);
@@ -106,7 +105,7 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
         }
     });
 
-    suite('Turtle recording', {
+    bunit('Turtle recording', {
         setUp: setUpTurtle,
         recordLeft: function(ctx, joe) {
             joe.record('left');
@@ -121,7 +120,7 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
         }
     });
 
-    suite('Turtle reset', {
+    bunit('Turtle reset', {
         setUp: setUpTurtle,
         simple: function(ctx, joe) {
             joe.forward(100);
@@ -134,7 +133,7 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
         }
     });
 
-    suite('Turtle repeat', {
+    bunit('Turtle repeat', {
         setUp: setUpTurtle,
         simple: function(ctx, joe) {
             joe.repeat(4, 'forward', 100);
@@ -155,7 +154,7 @@ define(['bunit', '../src/turtle'], function(bunit, turtle) {
         }
     });
 
-    suite('Turtle color', {
+    bunit('Turtle color', {
         setUp: setUpTurtle,
         simple: function(ctx, joe) {
             joe.color('red');
